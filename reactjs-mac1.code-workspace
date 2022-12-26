@@ -1,0 +1,22 @@
+{
+	"folders": [
+		{
+			"path": "../../reactjs-mac1"
+		},
+		{
+			"path": "../../react-webpack"
+		},
+		{
+			"path": "../../reactjs-tiktok/tiktok"
+		},
+		{
+			"path": "../../C++"
+		},
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "react-webpack"
+	}
+}
