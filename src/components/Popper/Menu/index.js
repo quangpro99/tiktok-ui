@@ -1,24 +1,69 @@
 import Tippy from '@tippyjs/react/headless';
 import classNames from 'classnames/bind';
-import { Wrapper as PopperWrapper } from '~/components/Popper';
 import styles from './Menu.module.scss';
+
+import { Wrapper as PopperWrapper } from '~/components/Popper';
+import Header from './Header';
 import MenuItem from './MenuItem';
+import { useState } from 'react';
 
 const cx = classNames.bind(styles);
 
-function Menu({ children, items = [] }) {
+//Bắt buộc phải có tránh undefine
+const defaultFn = () => {};
+
+function Menu({ children, items = [], onChange = defaultFn }) {
+    //Mảng gồm dữ liệu mảng cấp 1 và mảng cấp 2
+    const [histrory, setHistory] = useState([{ data: items }]);
+
+    //Phần tử cuối mảng
+    const current = histrory[histrory.length - 1];
+
+    //Xét phần tử cuối mảng lấy ra data tức vẫn lấy ra mảng items
     const renderItems = () => {
-        return items.map((item, index) => <MenuItem key={index} data={item} />);
+        return current.data.map((item, index) => {
+            //Lấy children(cấp 2) của item !! để convert sang boolen nếu k có sẽ trả về undefine
+            const isParent = !!item.children;
+            return (
+                <MenuItem
+                    key={index}
+                    data={item}
+                    onClick={() => {
+                        if (isParent) {
+                            //push thêm để quay lại
+                            setHistory((pre) => [...pre, item.children]);
+                        } else {
+                            onChange(item);
+                        }
+                    }}
+                />
+            );
+        });
     };
 
     return (
         <Tippy
+            visible
             delay={[0, 700]}
             interactive
             placement="bottom-end"
             render={(attrs) => (
                 <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
-                    <PopperWrapper>{renderItems()}</PopperWrapper>
+                    <PopperWrapper>
+                        {/* Nếu histrory >1 tức mảng đang có 2 p tử trở lên tức có cấp 2 ms có header */}
+                        {histrory.length > 1 && (
+                            <Header
+                                title="Language"
+                                //Back lại chỉ cần cắt đi phần tử cuối
+                                onBack={() => {
+                                    setHistory((pre) =>
+                                        pre.slice(0, pre.length - 1),
+                                    );
+                                }}
+                            />
+                        )}
+                        {renderItems()}
+                    </PopperWrapper>
                 </div>
             )}
         >

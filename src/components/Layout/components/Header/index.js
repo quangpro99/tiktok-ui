@@ -30,6 +30,36 @@ const MENU_ITEMS = [
     {
         icon: <FontAwesomeIcon icon={faEarthAsia} />,
         title: 'English',
+        //Dữ liệu cấp 2
+        children: {
+            title: 'language',
+            data: [
+                {
+                    //type nhận biết trang đang truy cập
+                    type: 'language',
+                    code: 'en',
+                    title: 'English',
+                },
+                {
+                    type: 'language',
+                    code: 'vi',
+                    title: 'Tiếng Việt',
+                    children: {
+                        title: 'language',
+                        data: [
+                            {
+                                code: 'en',
+                                title: 'Tiếng Việt 1',
+                            },
+                            {
+                                code: 'vi',
+                                title: 'Tiếng Việt 2',
+                            },
+                        ],
+                    },
+                },
+            ],
+        },
     },
     {
         icon: <FontAwesomeIcon icon={faCircleQuestion} />,
@@ -50,6 +80,16 @@ function Header() {
             setSearchResult([]);
         }, 0);
     }, []);
+
+    //Handle
+    const handleMenuChange = (MenuItem) => {
+        switch (MenuItem.type) {
+            case 'language':
+                //Handle change to language
+                break;
+            default:
+        }
+    };
 
     return (
         <header className={cx('wrapper')}>
@@ -101,7 +141,7 @@ function Header() {
                         Log in
                     </Button>
 
-                    <Menu items={MENU_ITEMS}>
+                    <Menu items={MENU_ITEMS} onChange={handleMenuChange}>
                         <button className={cx('more-btn')}>
                             <FontAwesomeIcon icon={faEllipsisVertical} />
                         </button>
