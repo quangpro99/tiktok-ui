@@ -13,7 +13,6 @@ import {
     faCircleQuestion,
     faKeyboard,
     faCloudUpload,
-    faMessage,
     faUser,
     faCoins,
     faGear,
@@ -30,6 +29,8 @@ import AccountItem from '~/components/AccountItem';
 import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
+import { MessageIcon } from '~/components/Icons';
+import Image from '~/components/Image';
 
 //Giúp viết classname có dấu gạch ngang
 const cx = classNames.bind(styles);
@@ -182,7 +183,7 @@ function Header() {
                             </Tippy>
                             <Tippy content="Messages" placement="bottom">
                                 <button className={cx('action-btn')}>
-                                    <FontAwesomeIcon icon={faMessage} />
+                                    <MessageIcon />
                                 </button>
                             </Tippy>
                         </>
@@ -203,10 +204,11 @@ function Header() {
                         onChange={handleMenuChange}
                     >
                         {currentUser ? (
-                            <img
+                            <Image
                                 className={cx('user-avatar')}
                                 src="https://p16-sign-sg.tiktokcdn.com/aweme/720x720/tiktok-obj/7025621377344339970.jpeg?x-expires=1672621200&x-signature=7giOA5ZaH2C9J27d7Lb1qypFz7Y%3D"
                                 alt="Nguyen Van A"
+                                // fallback="https://files.fullstack.edu.vn/f8-prod/user_photos/273422/638c0cb084306.jpg"
                             />
                         ) : (
                             <button className={cx('more-btn')}>
