@@ -5,7 +5,7 @@
     --primary: #fe2c55;
     --white: #fff;
     --black: #000;
-    --text-color: #333;
+    --text-color: #161823;
     //Default Layout
     --default-layout-header-hight: 60px;
     --default-layout-width: 1150px;
@@ -40,4 +40,22 @@ input,
 a[href] {
     color: var(--text-color);
     text-decoration: none;
+}
+
+//Custom tippy
+body {
+    .tippy-arrow {
+        color: rgba(84, 84, 84, 0.92);
+    }
+    .tippy-box {
+        background-color: rgba(84, 84, 84, 0.92);
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 2.2rem;
+    }
+
+    .tippy-content {
+        padding: 8px 9px;
+    }
 }
