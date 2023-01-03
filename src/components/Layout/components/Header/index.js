@@ -1,4 +1,5 @@
 import classNames from 'classnames/bind';
+
 //Font awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -23,6 +24,8 @@ import Menu from '~/components/Popper/Menu';
 import { InboxIcon, MessageIcon, UploadIcon } from '~/components/Icons';
 import Image from '~/components/Image';
 import Search from '../../Search';
+import { Link } from 'react-router-dom';
+import routesConfig from '~/config/routes';
 
 //Giúp viết classname có dấu gạch ngang
 const cx = classNames.bind(styles);
@@ -114,9 +117,9 @@ function Header() {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <div className={cx('logo')}>
+                <Link to={routesConfig.home} className={cx('logo-link')}>
                     <img src={images.logo} alt="logo" />
-                </div>
+                </Link>
 
                 <Search />
 

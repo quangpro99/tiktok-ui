@@ -12,7 +12,12 @@ const cx = classNames.bind(styles);
 //Bắt buộc phải có tránh undefine
 const defaultFn = () => {};
 
-function Menu({ children, items = [], onChange = defaultFn }) {
+function Menu({
+    children,
+    items = [],
+    onChange = defaultFn,
+    hideOnClick = false,
+}) {
     //Mảng gồm dữ liệu mảng cấp 1 và mảng cấp 2
     const [histrory, setHistory] = useState([{ data: items }]);
 
@@ -44,6 +49,7 @@ function Menu({ children, items = [], onChange = defaultFn }) {
     return (
         //onHide xóa hết phần tử giữ lại phần tử đầu tiên
         <Tippy
+            hideOnClick={hideOnClick}
             interactive
             delay={[0, 700]}
             // làm lệch
