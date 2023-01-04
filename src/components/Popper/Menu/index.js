@@ -57,7 +57,7 @@ function Menu({
             placement="bottom-end"
             render={(attrs) => (
                 <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
-                    <PopperWrapper>
+                    <PopperWrapper className={cx('menu-popper')}>
                         {/* Nếu histrory >1 tức mảng đang có 2 p tử trở lên tức có cấp 2 ms có header */}
                         {histrory.length > 1 && (
                             <Header
@@ -70,7 +70,7 @@ function Menu({
                                 }}
                             />
                         )}
-                        {renderItems()}
+                        <div className={cx('menu-body')}>{renderItems()}</div>
                     </PopperWrapper>
                 </div>
             )}
