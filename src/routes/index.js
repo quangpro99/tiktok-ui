@@ -1,6 +1,6 @@
-import routesConfig from '~/config/routes';
+import config from '~/config';
 //Layout only
-import { HeaderOnly } from '~/components/Layout';
+import { HeaderOnly } from '~/layouts';
 
 //Pages
 import Home from '~/pages/Home';
@@ -13,24 +13,24 @@ const publicRoutes = [
     //Dùng cho router không cần đăng nhập vẫn xem được
     //Riêng upload không có layout chung(defaultLayout)
     {
-        path: routesConfig.home,
+        path: config.routes.home,
         component: Home,
     },
     {
-        path: routesConfig.following,
+        path: config.routes.following,
         component: Following,
     },
     {
-        path: routesConfig.profile,
+        path: config.routes.profile,
         component: Profile,
     },
     {
-        path: routesConfig.search,
+        path: config.routes.search,
         component: Search,
         layout: null,
     },
     {
-        path: routesConfig.upload,
+        path: config.routes.upload,
         component: Upload,
         layout: HeaderOnly,
     },
