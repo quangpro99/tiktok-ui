@@ -47,6 +47,30 @@ function Menu({
         });
     };
 
+    const handleBack = () => {
+        setHistory((pre) => pre.slice(0, pre.length - 1));
+    };
+
+    const renderResult = (attrs) => (
+        <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
+            <PopperWrapper className={cx('menu-popper')}>
+                {/* Nếu histrory >1 tức mảng đang có 2 p tử trở lên tức có cấp 2 ms có header */}
+                {histrory.length > 1 && (
+                    <Header
+                        title={current.title}
+                        //Back lại chỉ cần cắt đi phần tử cuối
+                        onBack={handleBack}
+                    />
+                )}
+                <div className={cx('menu-body')}>{renderItems()}</div>
+            </PopperWrapper>
+        </div>
+    );
+
+    const handleRestToFirstPage = () => {
+        setHistory((prev) => prev.slice(0, 1));
+    };
+
     return (
         //onHide xóa hết phần tử giữ lại phần tử đầu tiên
         <Tippy
@@ -56,26 +80,8 @@ function Menu({
             // làm lệch
             offset={[12, 8]}
             placement="bottom-end"
-            render={(attrs) => (
-                <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
-                    <PopperWrapper className={cx('menu-popper')}>
-                        {/* Nếu histrory >1 tức mảng đang có 2 p tử trở lên tức có cấp 2 ms có header */}
-                        {histrory.length > 1 && (
-                            <Header
-                                title={current.title}
-                                //Back lại chỉ cần cắt đi phần tử cuối
-                                onBack={() => {
-                                    setHistory((pre) =>
-                                        pre.slice(0, pre.length - 1),
-                                    );
-                                }}
-                            />
-                        )}
-                        <div className={cx('menu-body')}>{renderItems()}</div>
-                    </PopperWrapper>
-                </div>
-            )}
-            onHide={() => setHistory((prev) => prev.slice(0, 1))}
+            render={renderResult}
+            onHide={handleRestToFirstPage}
         >
             {children}
         </Tippy>
