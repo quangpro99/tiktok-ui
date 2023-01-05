@@ -6,6 +6,7 @@ import { Wrapper as PopperWrapper } from '~/components/Popper';
 import Header from './Header';
 import MenuItem from './MenuItem';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 const cx = classNames.bind(styles);
 
@@ -61,7 +62,7 @@ function Menu({
                         {/* Nếu histrory >1 tức mảng đang có 2 p tử trở lên tức có cấp 2 ms có header */}
                         {histrory.length > 1 && (
                             <Header
-                                title="Language"
+                                title={current.title}
                                 //Back lại chỉ cần cắt đi phần tử cuối
                                 onBack={() => {
                                     setHistory((pre) =>
@@ -80,5 +81,12 @@ function Menu({
         </Tippy>
     );
 }
+
+Menu.propTypes = {
+    children: PropTypes.node.isRequired,
+    items: PropTypes.array,
+    onChange: PropTypes.func,
+    hideOnClick: PropTypes.bool,
+};
 
 export default Menu;

@@ -70,6 +70,19 @@ function Button({
 
 //node có thể render được tất trừ hàm còn số, mảng, object, ...
 Button.prototype = {
-    children: PropTypes.node,
+    to: PropTypes.bool,
+    href: PropTypes.bool,
+    primary: PropTypes.bool,
+    outline: PropTypes.bool,
+    text: PropTypes.bool,
+    rounded: PropTypes.bool,
+    disabled: PropTypes.bool,
+    large: PropTypes.bool,
+    small: PropTypes.bool,
+    children: PropTypes.node.isRequired,
+    className: PropTypes.string,
+    leftIcon: PropTypes.node,
+    rightIcon: PropTypes.node,
+    onClick: PropTypes.func,
 };
 export default Button;

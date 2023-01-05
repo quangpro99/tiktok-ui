@@ -36,7 +36,7 @@ const MENU_ITEMS = [
         title: 'English',
         //Dữ liệu cấp 2
         children: {
-            title: 'language',
+            title: 'Language',
             data: [
                 {
                     //type nhận biết trang đang truy cập
