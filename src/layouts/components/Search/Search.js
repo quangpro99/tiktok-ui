@@ -4,7 +4,7 @@ import { faCircleXmark, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import HeadlessTippy from '@tippyjs/react/headless';
 import AccountItem from '~/components/AccountItem';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
-import { SearchIcon } from '~/components/Icons';
+import { SearchIcon } from '~/components/Icons/Icons';
 import { useDebounce } from '~/hooks';
 import * as searchService from '~/servies/searchService';
 import classNames from 'classnames/bind';
